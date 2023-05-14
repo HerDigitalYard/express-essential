@@ -8,6 +8,23 @@ const PORT = 3000;
 // Using public folder
 app.use('/images', express.static('public'))
 
+// Get - redirect method
+app.get('/redirect', (req, res) => {
+  res.redirect('http://www.linkedin.com')
+ })
+
+// Route Chaining 
+app.route("/class")
+    .get((req, res) => {
+        res.send('Retrive Class Info')
+    })
+    .post((req, res) => {
+        res.send("Create Class Info")
+    })
+    .put((req, res) => {
+        res.send("Update Class Info")
+    })
+
 // Get with Next
 app.get('/', (req, res, next) => {
     console.log('The respond will be sent by Next Function.');
@@ -16,7 +33,6 @@ app.get('/', (req, res, next) => {
     res.send("I just set up a rout with a second callback.");
  })
  
-
 app.get('/class/:id', (req, res) => {
    const studentID = Number(req.params.id);
 
